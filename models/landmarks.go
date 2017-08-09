@@ -1,53 +1,36 @@
 package models
 
-// Landmark struct to base landmarks off of
+import "math/rand"
+
+// Landmark struct to base landmarks off
 type Landmark struct {
 	Name      string
 	Creatures []string
-	Produce   map[string]int
+	// Starts off with certain amount of produce
+	Huckleberries [2]int
+	Guffins       [2]int
+	GoteaLeaves   [2]int
+	Stones        [2]int
+	Plasters      [2]int
 }
 
-// // ExploreHuckleberryHill adds mostly Huckleberries to a backpack
-// func (b *Backpack) ExploreHuckleberryHill() {
-// 	b.Huckleberries += rand.Intn(500)
-// 	b.Guffins += rand.Intn(10)
-// 	b.GoteaLeaves += rand.Intn(10)
-// 	b.Stones += rand.Intn(5)
-// 	b.Plasters += rand.Intn(2)
-// }
-//
-// // ExplorePeakPoint adds mostly GoteaLeaves to a backpack
-// func (b *Backpack) ExplorePeakPoint() {
-// 	b.Huckleberries += rand.Intn(10)
-// 	b.Guffins += rand.Intn(50)
-// 	b.GoteaLeaves += rand.Intn(500)
-// 	b.Stones += rand.Intn(50)
-// 	b.Plasters += rand.Intn(10)
-// }
-//
-// // ExploreLengthyLagoon adds mostly Guffins to a backpack
-// func (b *Backpack) ExploreLengthyLagoon() {
-// 	b.Huckleberries += rand.Intn(50)
-// 	b.Guffins += rand.Intn(500)
-// 	b.GoteaLeaves += rand.Intn(75)
-// 	b.Stones += rand.Intn(100)
-// 	b.Plasters += rand.Intn(20)
-// }
-//
-// // ExploreChalkCaves adds mostly Stones to a backpack
-// func (b *Backpack) ExploreChalkCaves() {
-// 	b.Huckleberries += rand.Intn(10)
-// 	b.Guffins += rand.Intn(4)
-// 	b.GoteaLeaves += rand.Intn(75)
-// 	b.Stones += rand.Intn(500)
-// 	b.Plasters += rand.Intn(20)
-// }
-//
-// // ExploreSentryStatue adds mostly Guffins to a backpack
-// func (b *Backpack) ExploreSentryStatue() {
-// 	b.Huckleberries += rand.Intn(75)
-// 	b.Guffins += rand.Intn(500)
-// 	b.GoteaLeaves += rand.Intn(20)
-// 	b.Stones += rand.Intn(4)
-// 	b.Plasters += rand.Intn(120)
-// }
+// LandmarkItems are the determined amounts from GetRandomItems
+type LandmarkItems struct {
+	Huckleberries int
+	Guffins       int
+	GoteaLeaves   int
+	Stones        int
+	Plasters      int
+}
+
+// GetRandomItems decides upon amounts of items based on 2 ints in Landmark struct
+func (l *Landmark) GetRandomItems() *LandmarkItems {
+	i := &LandmarkItems{
+		Huckleberries: l.Huckleberries[0] + rand.Intn(l.Huckleberries[1]-l.Huckleberries[0]),
+		Guffins:       l.Guffins[0] + rand.Intn(l.Guffins[1]-l.Guffins[0]),
+		GoteaLeaves:   l.GoteaLeaves[0] + rand.Intn(l.GoteaLeaves[1]-l.GoteaLeaves[0]),
+		Stones:        l.Stones[0] + rand.Intn(l.Stones[1]-l.Stones[0]),
+		Plasters:      l.Plasters[0] + rand.Intn(l.Plasters[1]-l.Plasters[0]),
+	}
+	return i
+}
