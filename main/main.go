@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/abiosoft/ishell"
+	"github.com/jarrattisted/gopherworld/data"
 	"github.com/jarrattisted/gopherworld/models"
 )
 
@@ -78,35 +79,35 @@ func main() {
 		},
 	})
 
-	// shell.AddCmd(&ishell.Cmd{
-	// 	Name: "explore",
-	// 	Help: "Get your Gopher to explore the Gopherworld!",
-	// 	Func: func(c *ishell.Context) {
-	// 		if globpher == nil {
-	// 			c.Println("You need to create a Gopher first!")
-	// 			return
-	// 		}
-	// 		choice := c.MultiChoice([]string{
-	// 			"🍇 Huckleberry Hill",
-	// 			"🌁 Peak Point",
-	// 			"⛴ Lengthy Lagoon",
-	// 			"🏜 Chalk Caves",
-	// 			"🗿 Sentry Statue",
-	// 		}, "Where would you like to explore?")
-	// 		switch choice {
-	// 		case 0:
-	// 			globpher.Backpack.ExploreHuckleberryHill()
-	// 		case 1:
-	// 			globpher.Backpack.ExplorePeakPoint()
-	// 		case 2:
-	// 			globpher.Backpack.ExploreLengthyLagoon()
-	// 		case 3:
-	// 			globpher.Backpack.ExploreChalkCaves()
-	// 		case 4:
-	// 			globpher.Backpack.ExploreSentryStatue()
-	// 		}
-	// 	},
-	// })
+	shell.AddCmd(&ishell.Cmd{
+		Name: "explore",
+		Help: "Get your Gopher to explore the Gopherworld!",
+		Func: func(c *ishell.Context) {
+			if globpher == nil {
+				c.Println("You need to create a Gopher first!")
+				return
+			}
+			choice := c.MultiChoice([]string{
+				"🍇 Huckleberry Hill",
+				"🌁 Peak Point",
+				"⛴ Lengthy Lagoon",
+				// "🏜 Chalk Caves",
+				// "🗿 Sentry Statue",
+			}, "Where would you like to explore?")
+			switch choice {
+			case 0:
+				globpher.ExploreLandmark(data.HuckleberryHill)
+			case 1:
+				globpher.ExploreLandmark(data.PeakPoint)
+			case 2:
+				globpher.ExploreLandmark(data.LengthyLagoon)
+			case 3:
+				// globpher.ExploreLandmark(data.HuckleberryHill)
+			case 4:
+				// globpher.ExploreLandmark(data.HuckleberryHill)
+			}
+		},
+	})
 
 	// run shell
 	shell.Run()

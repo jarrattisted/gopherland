@@ -10,7 +10,7 @@ type Gopher struct {
 	*Animal
 	*Backpack
 	SqweakPitch string
-	SpiritLevel int
+	Spirit      int
 }
 
 // GenerateBackpack creates a new backpack with random values inside
@@ -37,7 +37,7 @@ func (g *Gopher) String() string {
       Eyes: %v
       Tail: %v
       Sqweak Pitch: %v
-      Spirit Level: %v
+      Spirit: %v
 
     🎒 %v has the following in their backpack:
       %v Huckleberries
@@ -46,7 +46,7 @@ func (g *Gopher) String() string {
       %v Stones
       %v Plasters
   `,
-		g.Name, g.HeightCm, g.WeightKg, g.Legs, g.Ears, g.Eyes, g.Tail, g.SqweakPitch, g.SpiritLevel,
+		g.Name, g.HeightCm, g.WeightKg, g.Legs, g.Ears, g.Eyes, g.Tail, g.SqweakPitch, g.Spirit,
 		g.Name, g.Huckleberries, g.Guffins, g.GoteaLeaves, g.Stones, g.Plasters,
 	)
 	return s
@@ -63,9 +63,9 @@ func (g *Gopher) AttributesString() string {
       Eyes: %v
       Tail: %v
       Sqweak Pitch: %v
-      Spirit Level: %v
+      Spirit: %v
   `,
-		g.Name, g.HeightCm, g.WeightKg, g.Legs, g.Ears, g.Eyes, g.Tail, g.SqweakPitch, g.SqweakPitch,
+		g.Name, g.HeightCm, g.WeightKg, g.Legs, g.Ears, g.Eyes, g.Tail, g.SqweakPitch, g.Spirit,
 	)
 	return s
 }
@@ -83,6 +83,13 @@ func (g *Gopher) BackpackContentsString() string {
 		g.Name, g.Huckleberries, g.Guffins, g.GoteaLeaves, g.Stones, g.Plasters,
 	)
 	return s
+}
+
+// ExploreLandmark gets items from GetRandomItems, comes up with ints with AddLandmarkItems
+// and then adds it to the Gopher's backpack
+func (g *Gopher) ExploreLandmark(l *Landmark) {
+	li := l.GetRandomItems()
+	g.Backpack.AddLandmarkItems(li)
 }
 
 // GenerateGopher creates a new Gopher with random values
@@ -104,7 +111,7 @@ func GenerateGopher(name string) *Gopher {
 			Tail:     true,
 		},
 		SqweakPitch: sqweaks[rand.Intn(len(sqweaks))],
-		SpiritLevel: 10,
+		Spirit:      10,
 	}
 	g.GenerateBackpack()
 	return g
