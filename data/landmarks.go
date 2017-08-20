@@ -4,6 +4,11 @@ import (
 	"github.com/jarrattisted/gopherworld/models"
 )
 
+/*
+	Each landmark has a name, creatures that live there, and an amount of produce.
+	The produce given will be a number between the two array indexes.
+*/
+
 // HuckleberryHill is rich with Huckleberries
 var HuckleberryHill = &models.Landmark{
 	Name: "Huckleberry Hill",
