@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"time"
 
@@ -91,20 +92,25 @@ func main() {
 				"🍇 Huckleberry Hill",
 				"🌁 Peak Point",
 				"⛴ Lengthy Lagoon",
-				// "🏜 Chalk Caves",
-				// "🗿 Sentry Statue",
+				"🏜 Chalk Caves",
+				"🗿 Sentry Statue",
 			}, "Where would you like to explore?")
 			switch choice {
 			case 0:
-				globpher.ExploreLandmark(data.HuckleberryHill)
+				result := globpher.ExploreLandmark(data.HuckleberryHill)
+				fmt.Println(result)
 			case 1:
-				globpher.ExploreLandmark(data.PeakPoint)
+				result := globpher.ExploreLandmark(data.PeakPoint)
+				fmt.Println(result)
 			case 2:
-				globpher.ExploreLandmark(data.LengthyLagoon)
+				result := globpher.ExploreLandmark(data.LengthyLagoon)
+				fmt.Println(result)
 			case 3:
-				// globpher.ExploreLandmark(data.HuckleberryHill)
+				result := globpher.ExploreLandmark(data.HuckleberryHill)
+				fmt.Println(result)
 			case 4:
-				// globpher.ExploreLandmark(data.HuckleberryHill)
+				result := globpher.ExploreLandmark(data.HuckleberryHill)
+				fmt.Println(result)
 			}
 		},
 	})

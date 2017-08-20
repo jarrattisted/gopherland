@@ -85,11 +85,24 @@ func (g *Gopher) BackpackContentsString() string {
 	return s
 }
 
-// ExploreLandmark gets items from GetRandomItems, comes up with ints with AddLandmarkItems
-// and then adds it to the Gopher's backpack
-func (g *Gopher) ExploreLandmark(l *Landmark) {
+// ExploreLandmark gets items from GetRandomItems, comes up with ints with
+// AddLandmarkItems and then adds it to the Gopher's backpack. It also prints
+// out what was added
+func (g *Gopher) ExploreLandmark(l *Landmark) string {
 	li := l.GetRandomItems()
 	g.Backpack.AddLandmarkItems(li)
+
+	s := fmt.Sprintf(`
+    🎒✅ %v added the following to their backpack:
+      %v Huckleberries
+      %v Guffins
+      %v Gotea Leaves
+      %v Stones
+      %v Plasters
+  `,
+		g.Name, li.Huckleberries, li.Guffins, li.GoteaLeaves, li.Stones, li.Plasters,
+	)
+	return s
 }
 
 // GenerateGopher creates a new Gopher with random values
